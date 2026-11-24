@@ -18,6 +18,14 @@ It needs a network connection to load [D3](https://d3js.org) 7.8.5 from cdnjs an
 
 Deep links: `#viz` (plays the opening transition), `#def`, `#foom` (plays the brackets), `#here` and `#how` (the footnote on how the graph works). Milestones: `#turk`, `#ai`, `#winter`, `#deep`, `#chatgpt`, `#agi`, `#asi` and `#new` (always the newest). Named ones are set by title in `SLUG`; the rest are `#e1`, `#e2` and so on by position, so those shift when you add events.
 
+## Deploy
+
+On Netlify, import the repo and accept the defaults: `netlify.toml` publishes the repo root with no build. From the command line:
+
+```sh
+npx netlify-cli deploy --prod
+```
+
 ## Edit
 
 Everything is in `index.html`.
