@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>The Machine Record</title>
+<title>The Story of AI So Far</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@600;700&family=Patrick+Hand&family=Libre+Franklin:wght@400;600&display=swap">
 <style>
@@ -39,8 +39,8 @@ p{margin:0}
 .col{position:relative;width:390px;max-width:100%}
 .step{min-height:58vh;display:flex;flex-direction:column;justify-content:center;padding-block:24px}
 .hero{min-height:92vh}
-h1{font:700 clamp(3.2rem,6vw,4.8rem)/.9 var(--display);margin:0 0 18px;text-wrap:balance}
-.hero .kick{color:var(--hot);font-weight:600;margin-bottom:12px}.joke,#viz,#def{margin-bottom:80vh}.bam{font-size:2.8rem}.anchor{text-decoration:none;opacity:.55}.anchor:hover,.anchor:focus-visible{opacity:1}
+h1{font:700 clamp(6.5rem,13vw,10.5rem)/.82 var(--display);margin:0 0 28px;text-wrap:balance}
+.hero .kick{color:var(--hot);font-weight:600;margin-bottom:12px}.joke,#viz,#def,#foom,#here{margin-bottom:80vh}.bam{font-size:2.8rem}.anchor{text-decoration:none;opacity:.55}.anchor:hover,.anchor:focus-visible{opacity:1}
 .jump{display:flex;flex-wrap:wrap;gap:6px;margin-top:44px}
 .jump a{border:1px solid var(--grid);border-radius:99px;color:var(--soft);padding:3px 9px;text-decoration:none;font-size:.78rem}
 .jump a:hover{color:var(--ink);border-color:var(--soft)}
@@ -62,8 +62,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 </head>
 <body>
-<div id="chart"><svg role="img" aria-label="Largest AI training run so far, 1950 to 2026, with 72 AI milestones since 1770. On a log scale it still bends upward, most steeply after 2010."></svg><svg id="toon" viewBox="0 0 640 480" role="img" aria-label="Cartoon: an AI intelligence curve climbs past ant, bird and chimp, then shoots past human and Einstein, which sit almost together. One stick figure finds it cute; the next is shocked.">
-<path d="M120 20V440H610"/><text x="365" y="470" text-anchor="middle">time</text><text transform="translate(26 240) rotate(-90)" text-anchor="middle">intelligence</text><path class="rung" d="M120 400H600"/><text x="110" y="406" text-anchor="end">ant</text><path class="rung" d="M120 330H600"/><text x="110" y="336" text-anchor="end">bird</text><path class="rung" d="M120 250H600"/><text x="110" y="256" text-anchor="end">chimp</text><path class="rung" d="M120 160H600"/><text x="110" y="174" text-anchor="end">human</text><path class="rung" d="M120 142H600"/><text x="110" y="142" text-anchor="end">Einstein</text>
+<div id="chart"><svg role="img" aria-label="Largest AI training run so far, 1950 to 2026, with 72 AI milestones since 1770. The scale is logarithmic."></svg><svg id="toon" viewBox="0 0 640 480" role="img" aria-label="Cartoon: an AI intelligence curve climbs past ant, bird and chimp, then shoots past human and Einstein, which sit almost together. One stick figure finds it cute; the next is shocked.">
+<path d="M120 20V440H610"/><text x="365" y="470" text-anchor="middle">time</text><text x="606" y="430" text-anchor="end" style="font-size:16px;fill:var(--soft)">cartoon approximation</text><text transform="translate(26 240) rotate(-90)" text-anchor="middle">intelligence</text><path class="rung" d="M120 400H600"/><text x="110" y="406" text-anchor="end">ant</text><path class="rung" d="M120 330H600"/><text x="110" y="336" text-anchor="end">bird</text><path class="rung" d="M120 250H600"/><text x="110" y="256" text-anchor="end">chimp</text><path class="rung" d="M120 160H600"/><text x="110" y="174" text-anchor="end">human</text><path class="rung" d="M120 142H600"/><text x="110" y="142" text-anchor="end">Einstein</text>
 <path class="curve" pathLength="1" stroke-dasharray="1 2" d="M122 438C300 425 430 350 478 40"/><path class="tip" d="M466 58L479 36L492 60"/>
 <g id="fa"><circle cx="350" cy="106" r="8"/><path d="M350 114V128M341 121H359M350 128L342 140M350 128L358 140"/><text x="340" y="66" text-anchor="middle">aww, it does</text><text x="340" y="88" text-anchor="middle">little tricks</text></g>
 <g id="fb"><circle cx="540" cy="106" r="8"/><path d="M540 114V128M531 121H549M540 128L532 140M540 128L548 140"/><text x="545" y="88" text-anchor="middle">wait. what?!</text></g></svg><svg id="morph" aria-hidden="true"><path></path></svg><div id="tip" hidden></div></div>
@@ -79,7 +79,7 @@ const E=[["1770","The Mechanical Turk","A chess-playing “automaton” tours Eu
 ["1943","An Artificial Neuron","Warren McCulloch and Walter Pitts describe networks of simple logical neurons.","https://en.wikipedia.org/wiki/A_Logical_Calculus_of_the_Ideas_Immanent_in_Nervous_Activity","Ideas",null,null,null,null],
 ["1948","Cybernetics","Norbert Wiener founds a science of feedback and control in animals and machines.","https://en.wikipedia.org/wiki/Cybernetics:_Or_Control_and_Communication_in_the_Animal_and_the_Machine","Ideas",null,null,null,null],
 ["1950.10","Can Machines Think?","Alan Turing proposes the imitation game, now called the Turing test.","https://en.wikipedia.org/wiki/Computing_Machinery_and_Intelligence","Ideas",null,null,null,null],
-["1956","The Dartmouth Workshop","The field takes its name from the workshop proposal by McCarthy, Minsky, Rochester and Shannon.","https://en.wikipedia.org/wiki/Dartmouth_workshop","Ideas",null,"AI",null,null],
+["1956","The Dartmouth Workshop","The field takes its name from the workshop proposal by McCarthy, Minsky, Rochester and Shannon.","https://en.wikipedia.org/wiki/Dartmouth_workshop","Ideas",null,null,null,null],
 ["1956","Logic Theorist","Newell, Simon and Shaw’s program proves theorems from Principia Mathematica.","https://en.wikipedia.org/wiki/Logic_Theorist","Machines",null,null,null,null],
 ["1958","The Perceptron","Frank Rosenblatt introduces a neural network that learns from examples.","https://en.wikipedia.org/wiki/Perceptron","Ideas",null,null,null,null],
 ["1959","“Machine Learning”","Arthur Samuel popularizes the term with a checkers program that improves through play.","https://en.wikipedia.org/wiki/Arthur_Samuel_(computer_scientist)","Ideas",null,null,null,null],
@@ -117,7 +117,7 @@ const E=[["1770","The Mechanical Turk","A chess-playing “automaton” tours Eu
 ["2021.06.29","GitHub Copilot","AI code completion reaches working programmers in a technical preview.","https://en.wikipedia.org/wiki/GitHub_Copilot","Work",null,null,null,null],
 ["2022.06.11","“I Think It’s Sentient”","Google engineer Blake Lemoine goes public with his belief that the LaMDA chatbot is sentient. Google disagrees.","https://en.wikipedia.org/wiki/LaMDA","Society",null,null,null,null],
 ["2022.08.22","Stable Diffusion","An open-weight image generator runs on consumer graphics cards.","https://en.wikipedia.org/wiki/Stable_Diffusion","Daily life",null,null,null,null],
-["2022.11.30","ChatGPT Launches","OpenAI releases a “research preview.” It draws an estimated 100 million users in about two months.","https://en.wikipedia.org/wiki/ChatGPT","Daily life",null,null,null,null],
+["2022.11.30","ChatGPT Launches","OpenAI releases a “research preview.” It draws an estimated 100 million users in about two months.","https://en.wikipedia.org/wiki/ChatGPT","Daily life","The loudest “AI is here” moment, in our judgment. The word itself dates from the 1950s.","AI",null,null],
 ["2023.03.14","GPT-4","OpenAI’s multimodal model posts strong results on professional exams. Anthropic releases Claude the same day.","https://arxiv.org/abs/2303.08774","Daily life",null,null,null,null],
 ["2023.03.22","“Sparks of AGI”","Microsoft researchers argue that GPT-4 could be viewed as an early, incomplete version of AGI.","https://arxiv.org/abs/2303.12712","Ideas","An early, much-criticized use of the word about a real system.",null,null,null],
 ["2023.03.22","The Pause Letter","An open letter calls for a six-month pause on training the most powerful systems.","https://en.wikipedia.org/wiki/Pause_Giant_AI_Experiments:_An_Open_Letter","Society",null,null,null,null],
@@ -142,9 +142,9 @@ const E=[["1770","The Mechanical Turk","A chess-playing “automaton” tours Eu
 ["2026.09.08","Navier–Stokes Announced","OpenAI says its system proved a smoothly forced fluid can blow up in finite time, with a Lean formalization.","https://openai.com/index/navier-stokes-solution/","Science","It set off a credit dispute with Tristan Buckmaster and Levent Alpöge, who had related work.",null,null,null],
 ["2026.11.20","Riemann Hypothesis Proof","Levent Alpöge of Anthropic posts a Lean proof developed with Claude. The next day, the Lean FRO and Mathlib Initiative certify both the statement and the proof as correct. Elon Musk declares that “unequivocal super intelligence has arrived.” Meta’s AI chief says superintelligence is arriving and warns about control.","https://www.yahoo.com/news/science/articles/ai-riemann-hypothesis-proof-almost-210000837.html","Science","As of 2026.11.23 no full human-readable version is published, and mathematicians do not yet fully understand it. Excelling in one field also does not meet Bostrom’s definition of superintelligence.","ASI","https://thenextweb.com/news/metas-ai-chief-says-superintelligence-is-arriving-and-control-is-at-risk","https://cellcog.ai/blog/elon-musk-superintelligence-singularity/"],
 ["2026.11.20","A Human Proof, Same Day","Ravi Vakil posts Alessandro Masullo’s draft proof of the generalized hypothesis: “all human, with no AI.”","https://techcrunch.com/2026/11/20/ai-claimed-a-solution-to-the-167-year-old-riemann-hypothesis-and-a-human-did-too/","Science","We found no report of an independent check.",null,null,null]];
-const G=[['AI','Artificial intelligence: machines doing tasks we associate with intelligence, such as seeing, using language or proving theorems. Chess programs and chatbots both count.',W+'Artificial_intelligence','It exists, and has for decades.'],
-['AGI','Artificial general intelligence: a system matching people across most cognitive work. No test is agreed. OpenAI’s charter says “highly autonomous systems that outperform humans at most economically valuable work.”','https://openai.com/charter/','Its arrival is disputed.'],
-['ASI','Artificial superintelligence: Nick Bostrom’s “any intellect that greatly exceeds the cognitive performance of humans in virtually all domains of interest.”',W+'Superintelligence','Hypothetical. Superhuman skill in one field does not qualify.']];
+const G=[['AI','<b>Artificial intelligence:</b> machines doing tasks we associate with intelligence, such as seeing, using language or proving theorems. Chess programs and chatbots both count.',W+'Artificial_intelligence','It exists, and has for decades.'],
+['AGI','<b>Artificial general intelligence:</b> a system matching people across most cognitive work. No test is agreed. OpenAI’s charter says “highly autonomous systems that outperform humans at most economically valuable work.”','https://openai.com/charter/','Its arrival is disputed.'],
+['ASI','<b>Artificial superintelligence:</b> Nick Bostrom’s “any intellect that greatly exceeds the cognitive performance of humans in virtually all domains of interest.”',W+'Superintelligence','Hypothetical. Superhuman skill in one field does not qualify.']];
 const yr=s=>{const [y,m,d]=s.split('.').map(Number);return y+(m?(m-1+((d||15)-1)/31)/12:.5)};
 const $=s=>document.querySelector(s),fmt=s=>{const [y,m,d]=s.split('.');return m?`${d?+d+' ':''}${['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'][m-1]} ${y}`:y};
 const ex=(t,u)=>`<a href="${u}" target="_blank" rel="noopener">${t}</a>`;
@@ -152,17 +152,17 @@ const anchor=n=>`<a class="anchor" href="#${n}" aria-label="Link to this section
 // named anchors; other milestones are #e0, #e1, ... and the newest is always #new
 const SLUG={'The Mechanical Turk':'turk','The Dartmouth Workshop':'ai','The First AI Winter':'winter','AlexNet Wins ImageNet':'deep','ChatGPT Launches':'chatgpt','GPT-6 Astra':'agi','Riemann Hypothesis Proof':'asi'};
 const id=i=>i===E.length-1?'new':SLUG[E[i][1]]||'e'+i,find=t=>E.findIndex(e=>e[1]===t);
-$('.col').innerHTML=`<section class="step hero"><p class="kick">A timeline of AI milestones</p><h1>You know how everyone says we can’t feel exponentials?</h1><p>Keep scrolling.</p><div class="jump">${[['viz','The graph'],['def','Definitions'],['turk','Mechanical Turk'],['ai','AI gets its name'],['winter','AI winter'],['deep','Deep learning'],['chatgpt','ChatGPT'],['agi','AGI claims'],['asi','ASI claims'],['new','Latest'],['foom','70 years, 78 days'],['here','You are here'],['how','How it works']].map(([n,t])=>`<a href="#${n}">${t}</a>`).join('')}</div></section>
+$('.col').innerHTML=`<section class="step hero"><p class="kick">Gradually, then suddenly</p><h1>AI...<br>So Far</h1><p>A timeline, 1770 to now. Keep scrolling.</p><div class="jump">${[['viz','The graph'],['def','Definitions'],['turk','Mechanical Turk'],['ai','AI gets its name'],['winter','AI winter'],['deep','Deep learning'],['chatgpt','ChatGPT'],['agi','AGI claims'],['asi','ASI claims'],['new','Latest'],['foom','The speedup'],['here','You are here'],['how','How it works']].map(([n,t])=>`<a href="#${n}">${t}</a>`).join('')}</div></section>
 <section class="step joke"><div class="card"><h2>That’s the joke, anyway</h2><p>It looks slow. It looks cute. Then it’s past you.</p><p class="note">A cartoon, not data. Redrawn after Tim Urban’s ${ex('“The AI Revolution”','https://waitbutwhy.com/2015/01/artificial-intelligence-revolution-1.html')}, Wait But Why, 2015.</p></div></section>
-<section class="step" id="viz"><div class="card"><h2 class="bam">Let’s try visualizing it... ${anchor("viz")}</h2><p>Here is the history, laid over a real curve: the most computation ever used to train an AI model. Each white dot is a milestone, sitting at the record of its day. The faint dots are 546 AI models. Hover over any dot for details.</p><p>Every gridline is a huge multiple of the one below it. <a href="#how">How this graph works</a></p><p class="note">Compute measures resources, not intelligence.</p></div></section>
+<section class="step" id="viz"><div class="card"><h2 class="bam">Let’s try visualizing it... ${anchor("viz")}</h2><p>Here is the history, laid over a real curve: the most computation ever used to train an AI model. Each white dot is a milestone, sitting at the record of its day. The faint dots are 546 AI models. Hover over any dot for details.</p><p>Every gridline is a huge multiple of the one below it. <a href="#how">How this graph works</a></p><p class="note">The axis has changed. The cartoon’s was intelligence. This one is training compute on a log scale, which measures resources, not intelligence.</p></div></section>
 <section class="step" id="def"><div class="card"><p>Three words before we rewind to 1770 and walk up it. ${anchor("def")}</p><dl>${G.map(g=>`<div><dt>${g[0]}</dt><dd>${g[1]} <span class="note">${g[3]}</span> ${ex('Source',g[2])}</dd></div>`).join('')}</dl></div></section>`
-+E.map((e,i)=>`<section class="step${e[6]?" mega":""}" id="${id(i)}"><article class="card">${e[6]?`<p class="era">${e[6]}</p><p class="say">${{AI:"The field gets its name",AGI:"People start saying it’s here",ASI:"Now they’re saying this"}[e[6]]}</p>`:""}<time>${fmt(e[0])} · ${e[4]}</time><h2>${e[1]} ${SLUG[e[1]]||i===E.length-1?anchor(id(i)):''}</h2><p>${e[2]}</p>${e[5]?`<p class="note">${e[5]}</p>`:''}<p class="src">${ex('Source',e[3])}${e[7]?` · ${ex('Meta reaction',e[7])} · ${ex('Musk reaction',e[8])}`:''}</p></article></section>`).join('')
-+`<section class="step mega" id="foom"><div class="card"><p class="era" style="font-size:clamp(3.6rem,7vw,5rem);line-height:.9">70 years. Then 78 days. ${anchor("foom")}</p><p>From naming AI in summer 1956 to the loudest AGI claims took about 70 years. The ASI claims followed 78 days later.</p><p class="note">These lines mark when people started using each word as a claim. The AGI and ASI claims are disputed, so this shows how fast the talk moved. It does not show that either was reached.</p></div></section>
++E.map((e,i)=>`<section class="step${e[6]?" mega":""}" id="${id(i)}"><article class="card">${e[6]?`<p class="era">${e[6]}</p><p class="say">${{AI:"Nearly everyone says it’s here",AGI:"People start saying it’s here",ASI:"Now they’re saying this"}[e[6]]}</p>`:""}<time>${fmt(e[0])} · ${e[4]}</time><h2>${e[1]} ${SLUG[e[1]]||i===E.length-1?anchor(id(i)):''}</h2><p>${e[2]}</p>${e[5]?`<p class="note">${e[5]}</p>`:''}<p class="src">${ex('Source',e[3])}${e[7]?` · ${ex('Meta reaction',e[7])} · ${ex('Musk reaction',e[8])}`:''}</p></article></section>`).join('')
++`<section class="step mega" id="foom"><div class="card"><p class="era" style="font-size:clamp(3.6rem,7vw,5rem);line-height:.9">1,373 days. Then 78. ${anchor("foom")}</p><p>From “AI is here” to “AGI is here” took 1,373 days, or 3 years and 9 months. “ASI is here” came 78 days later.</p><p class="note">All three lines use one standard: the loudest public moment we could find. We picked those moments, and ChatGPT as “AI is here” is our judgment. The AGI and ASI claims are disputed. This shows how fast the talk moved, not that either was reached.</p></div></section>
 <section class="step" id="here"><div class="card"><h2>You are here ${anchor("here")}</h2><p>${E.length} milestones, back in one view. Select any dot to return to its card.</p><p class="note">Compiled 23 Nov 2026. Shaded bands mark the two AI winters, with approximate dates. Written by Claude, which is made by Anthropic. Several 2026 entries involve Anthropic or its competitors.</p></div></section>
 <section class="step" id="how"><div class="card"><h2>How this graph works ${anchor("how")}</h2>
-<p><b>The axis</b> is training compute in FLOP, the number of calculations used to train a model. It is logarithmic, so each step up multiplies. Steady exponential growth would be a straight line here. This line bends upward: the record grew about 2.4× a year from 1987 to 2007, and about 4× a year from 2013 to 2026.</p>
-<p><b>The line</b> is the largest training run so far. It moves in steps because it only changes when a bigger model appears. Early years have few models, so its shape before 1987 is rough.</p>
-<p><b>White dots</b> are ${E.length} milestones we picked. Each sits on the line at its date. Those before 1950 sit on the floor because the data starts there, so that flat stretch is not a measurement.</p>
+<p><b>The axis</b> is training compute in FLOP, the number of calculations used to train a model. It is logarithmic, so each step up multiplies. Steady exponential growth would be a straight line here. Since 1987 the record has grown about 2.6× a year on average, with a plateau from 2007 to 2013. That is close to steady exponential growth.</p>
+<p><b>The line</b> is the largest training run so far. It moves in steps because it only changes when a bigger model appears. Early years have few models, so its shape before 1987, including the flat stretch from 1960, is rough.</p>
+<p><b>White dots</b> are ${E.length} milestones we picked. Each sits on the line at its date. Those before 1950 sit on the floor because the data starts there, so that flat stretch is not a measurement. In the widest views, one teal band covers the AI, AGI and ASI claims, from 2022 to 2026.</p>
 <p><b>Faint dots</b> are 546 AI models with a date and a compute estimate, from ${ex('Epoch AI','https://epoch.ai/data/ai-models')} (${ex('CC BY','https://creativecommons.org/licenses/by/4.0/')}, downloaded 23 Nov 2026). Some estimates are speculative; hover over a dot for its rating.</p></div></section>`;
 const steps=[...document.querySelectorAll('.step')];
 // Epoch AI, CC BY: [year, log10 FLOP, name, org, date, domain, parameters, confidence]
@@ -174,7 +174,7 @@ const T=E.map(e=>yr(e[0])),P=E.map((e,i)=>({e,i,t:T[i],rec:recAt(T[i]+.001)}));
 const full={now:2027,l:1762,r:2056};
 const cam=i=>{const t=T[i],k=d3.scaleLinear([1940,1975,2010,2023,2027],[1,.75,.35,.06,.016]).clamp(true)(t)*178,l=Math.max(1762,t-Math.max(k,t<1940?45:0));
 return{now:t+.001,l,r:t+Math.max(.25,(t-l)*.16),e:E[i]}};
-const C=[full,full,full,full,...E.map((e,i)=>cam(i)),{...full,l:1945,r:2046,spd:1},full,full];
+const C=[full,full,full,{...full,l:2019,r:2028.6},...E.map((e,i)=>cam(i)),{...full,l:2022.4,r:2027.9,spd:1},full,full];
 C.forEach(c=>{const v=MODELS.filter(d=>d.t>=c.l&&d.t<=c.now).map(d=>d.v);const k=recAt(c.now);if(k)v.push(k.v);let a=v.length?Math.min(...v):1,z=v.length?Math.max(...v):9;if(z-a<6){const k=(a+z)/2;a=k-3;z=k+3}c.lo=a-1;c.hi=z+(z-a)*.14+.5});
 const resample=(v,n)=>{const L=[0];for(let i=1;i<v.length;i++)L.push(L[i-1]+Math.hypot(v[i][0]-v[i-1][0],v[i][1]-v[i-1][1]));return d3.range(n).map(k=>{const t=L.at(-1)*k/(n-1),i=Math.max(1,d3.bisectLeft(L,t)),f=(t-L[i-1])/((L[i]-L[i-1])||1);return[v[i-1][0]+f*(v[i][0]-v[i-1][0]),v[i-1][1]+f*(v[i][1]-v[i-1][1])]})};
 let toon=0;const curve=$('#toon .curve');
@@ -209,6 +209,12 @@ if(scrollY<=0){i=0;p=0}
 const near=p>.5?i+1:i,raw=p;
 // opening: finish bending the curve before the next card is read
 if(i===1)p=Math.max(0,Math.min(1,(p-.12)/.53));
+// zoom in on the claims before their lines rise
+if(i===2)p=Math.min(1,p/.48);
+// definitions: hold until the card starts leaving, fade the lines out, then rewind
+let out=0;
+if(i===3){const D=mids[4]-mids[3],gone=mk-mids[3],card=steps[3].firstElementChild.getBoundingClientRect(),s0=Math.min(.5*D,Math.max(0,card.top+gone-(phone?h:0)));
+const z=Math.max(0,Math.min(1,(gone-s0)/(.95*D-s0)));out=Math.min(1,z/.3);p=Math.max(0,(z-.3)/.7)}
 p=calm.matches?Math.round(p):d3.easeCubicInOut(p);
 const a=C[i],b=C[Math.min(i+1,C.length-1)],q=k=>a[k]+(b[k]-a[k])*p;now=q('now');
 toon=i===0?1:i===1?1-p:0;
@@ -224,12 +230,13 @@ sx=d3.scaleLinear([q('l'),q('r')],[m.l,w-m.r]);
 const py=d=>d.rec?sy(d.rec.v):floor;
 P.forEach(d=>d.y=py(d));
 const kx=phone?[0,96,0]:[0,105,310],ky=phone?[12,12,30]:[12,12,12];
-key.html(`<text transform="translate(14 ${(m.t+floor)/2}) rotate(-90)" text-anchor="middle" style="fill:var(--ink);font-weight:600">${now<1950.5?'':`Training compute (FLOP, log)`}</text><circle cx="${m.l+5}" cy="${ky[0]}" r="5" fill="var(--ink)"/><text x="${m.l+16}" y="${ky[0]+4}" style="fill:var(--ink)">Milestone</text><path d="M${m.l+kx[1]} ${ky[1]}h18" stroke="var(--hot)" stroke-width="3"/><text x="${m.l+kx[1]+25}" y="${ky[1]+4}">${phone?'Largest run so far':'Largest training run so far'}</text><circle cx="${m.l+kx[2]+5}" cy="${ky[2]}" r="4" fill="var(--dot)"/><text x="${m.l+kx[2]+16}" y="${ky[2]+4}">AI model</text>`);
+key.html(`<text transform="translate(14 ${(m.t+floor)/2}) rotate(-90)" text-anchor="middle" style="fill:var(--ink);font-weight:600">${now<1950.5?'':`Training compute (FLOP, log scale)`}</text><circle cx="${m.l+5}" cy="${ky[0]}" r="5" fill="var(--ink)"/><text x="${m.l+16}" y="${ky[0]+4}" style="fill:var(--ink)">Milestone</text><path d="M${m.l+kx[1]} ${ky[1]}h18" stroke="var(--hot)" stroke-width="3"/><text x="${m.l+kx[1]+25}" y="${ky[1]+4}">${phone?'Largest run so far':'Largest training run so far'}</text><circle cx="${m.l+kx[2]+5}" cy="${ky[2]}" r="4" fill="var(--dot)"/><text x="${m.l+kx[2]+16}" y="${ky[2]+4}">AI model</text>`);
+const x50=sx(1950.5),pre=x50>m.l+90&&now>1950.5&&spd<.5;
 const whole=sx.domain()[1]-sx.domain()[0]>240,inx=t=>t>=sx.domain()[0]&&t<=sx.domain()[1],cur=C[near].e,mega=cur&&cur[6];
 svg.select('#cp rect').attr('x',m.l).attr('y',m.t-6).attr('width',Math.max(0,w-m.l-m.r)).attr('height',Math.max(0,h-m.t-m.b+12));
 const big0=spd>.5;big.attr('x',w-m.r-8).attr('y',h-m.b-18).attr('opacity',whole||big0?0:1).text(mega||Math.min(2026,Math.floor(now))).style('fill',mega?'var(--hot)':null).style('fill-opacity',mega?.3:null);
 const wb=[[1974,1980],[1987,1993]].map(([a1,b1])=>({a1,b1,x0:Math.max(m.l,sx(a1)),x1:Math.min(w-m.r,sx(Math.min(b1,now)))})).filter(z=>z.x1>z.x0);
-bands.html(wb.map(z=>`<rect x="${z.x0}" y="${m.t}" width="${z.x1-z.x0}" height="${h-m.t-m.b}" fill="var(--soft)" fill-opacity=".22"/>`).join(''));
+bands.html((pre?`<rect x="${m.l}" y="${m.t}" width="${x50-m.l}" height="${h-m.t-m.b}" fill="var(--soft)" fill-opacity=".07"/>`+(x50-m.l>(phone?170:200)?`<text x="${(m.l+x50)/2}" y="${phone?m.t+26:(m.t+floor)/2-8}" text-anchor="middle">No compute data before 1950</text><text x="${(m.l+x50)/2}" y="${phone?m.t+44:(m.t+floor)/2+10}" text-anchor="middle">(dots below are undated by compute, not zero)</text>`.replace('(dots below are undated by compute, not zero)','(dots on the floor are not zero)'):''):'')+wb.map(z=>`<rect x="${z.x0}" y="${m.t}" width="${z.x1-z.x0}" height="${h-m.t-m.b}" fill="var(--soft)" fill-opacity=".22"/>`).join(''));
 const winters=wb.map(z=>{const bw=z.x1-z.x0,fs=Math.max(9,Math.min(phone?10:20,bw*.8));if(bw<6)return'';const wide=!phone;
 return`<text class="winter" transform="translate(${(z.x0+z.x1)/2+fs*.35} ${h-m.b-10}) rotate(-90)" style="font-size:${fs}px">AI WINTER${wide?` ${z.a1}–${String(z.b1).slice(2)}`:''}</text>`}).join('');
 const xt=sx.ticks(phone?4:7).filter(n=>Number.isInteger(n)&&n<2030);
@@ -247,11 +254,19 @@ const to=resample(pts,140),M0=curve.getScreenCTM(),len=curve.getTotalLength();
 const from=d3.range(140).map(n=>{const z=curve.getPointAtLength(len*n/139).matrixTransform(M0);return[z.x-box.left,z.y-box.top]});
 mp.setAttribute('d',d3.line()(to.map((t,n)=>[from[n][0]+(t[0]-from[n][0])*p,from[n][1]+(t[1]-from[n][1])*p])));mp.style.opacity=1}else mp.style.opacity=0;
 const KEY=['ELIZA','ChatGPT Launches','Deep Blue Beats Kasparov','Can Machines Think?','Ada Lovelace’s Notes','The Mechanical Turk','R.U.R. Gives Us “Robot”','AlexNet Wins ImageNet'];
-const put=[],defs=steps[near].id==='def';let o=winters;
-// the AI, AGI and ASI lines fade in with the definitions
-const mk3=i<2?0:i===2?Math.max(0,Math.min(1,(raw-.5)/.3)):1;
-E.forEach((e,k)=>{if(!e[6]||spd>.5||!mk3)return;const t=T[k];if(t>now||!inx(t))return;const asi=sx(T[E.findIndex(z=>z[6]==='ASI')]),x=e[6]==='AGI'&&now>2026.88?Math.min(sx(t),asi-8):sx(t),sz=(phone?17:26)*(defs?phone?1.6:2.1:1),end=e[6]==='AGI',gap=8;
-o+=`<g opacity="${mk3}"><line x1="${x}" x2="${x}" y1="${m.t}" y2="${h-m.b}" stroke="var(--hot)" stroke-width="${defs?3:1.5}" stroke-dasharray="${defs?"7 6":"4 5"}"/><text class="lab" x="${end?x-gap:x+8}" y="${m.t+(defs?sz*.75:14)}" text-anchor="${end?'end':'start'}" style="font:700 ${sz}px var(--display);fill:var(--hot)">${e[6]}</text></g>`});
+const put=[],defs=i===3?out<1:steps[near].id==='def';let o=winters;
+// with the definitions, each line shoots up from the floor and its label pops in: AI, a pause, then AGI and ASI close together
+const mk3=i<2||i===2&&raw<=.5?0:i===3?1-out:1,RISE={AI:[.5,.68],AGI:[.75,.85],ASI:[.86,.92]};
+const t3=E.flatMap((e,k)=>e[6]?[T[k]]:[]);
+if(whole&&mk3&&spd<=.5&&now>=t3[2]){const b0=sx(t3[0]),b1=sx(t3[2]),z=phone?17:26;
+o+=`<g opacity="${mk3}"><rect x="${b0}" y="${m.t}" width="${b1-b0}" height="${floor-m.t}" fill="var(--hot)" fill-opacity=".28"/>`+['AI','AGI','ASI'].map((n,k)=>`<text class="lab" x="${b1+8}" y="${m.t+14+k*z*.95}" style="font:700 ${z}px var(--display);fill:var(--hot)">${n}</text>`).join('')+`<text class="lab" x="${b1+8}" y="${m.t+14+2*z*.95+18}" style="font-size:${phone?11:13}px">2022–26</text></g>`}
+E.forEach((e,k)=>{if(!e[6]||spd>.5||!mk3||whole)return;const t=T[k];if(t>now||!inx(t))return;
+const [a0,b0]=RISE[e[6]],g=i===2&&!calm.matches?Math.max(0,Math.min(1,(raw-a0)/(b0-a0))):1;if(!g)return;
+const x=sx(t),sz=(phone?17:26)*(defs?phone?1.6:2.1:1),end=e[6]==='AGI',gap=8;
+const top=floor-(floor-m.t)*d3.easeCubicIn(Math.min(1,g/.7)),hit=Math.max(0,(g-.7)/.3),pop=hit?Math.max(0,d3.easeBackOut.overshoot(2.5)(hit)):0;
+o+=`<g opacity="${mk3}"><line x1="${x}" x2="${x}" y1="${floor}" y2="${top}" stroke="var(--hot)" stroke-width="${defs?3:1.5}" stroke-dasharray="${defs?"7 6":"4 5"}"/>`;
+if(g<1)o+=hit?`<circle cx="${x}" cy="${m.t}" r="${8+46*hit}" fill="none" stroke="var(--hot)" stroke-width="${4*(1-hit)}" opacity="${1-hit}"/>`:`<circle cx="${x}" cy="${top}" r="9" fill="var(--hot)" opacity=".3"/><circle cx="${x}" cy="${top}" r="4.5" fill="var(--hot)"/>`;
+o+=`<g transform="translate(${end?x-gap:x+gap} ${m.t+(defs?sz*.75:14)}) scale(${pop})"><text class="lab" text-anchor="${end?'end':'start'}" style="font:700 ${sz}px var(--display);fill:var(--hot)">${e[6]}</text>${defs?`<text class="lab" y="${phone?14:19}" text-anchor="${end?'end':'start'}" style="font-size:${phone?11:14}px">“it’s here”</text>`:''}</g></g>`});
 [...seen].reverse().sort((a,b)=>(b.e===cur)-(a.e===cur)).forEach(d=>{const on=d.e===cur;if(spd>.5||defs||!inx(d.t)||(!whole&&cur&&cur!==d.e&&d.i<E.indexOf(cur)-7)||(whole&&!KEY.includes(d.e[1]))||(phone&&!on&&!whole))return;
 const n=d.e[1],tw=n.length*7.2,x=sx(d.t),X=x-14-tw>m.l?x-14-tw:x+14,y0=d.y-(on?4:0);
 const hit=y=>y<m.t+34||y>floor-4||X+tw>w-m.r+14||put.some(b=>X<b[0]+b[2]+8&&b[0]<X+tw+8&&Math.abs(b[1]-y)<18)||(!whole&&Math.abs(y-d.y)<14&&y!==y0)||seen.some(z=>z!==d&&sx(z.t)>X-7&&sx(z.t)<X+tw+7&&Math.abs(z.y-y)<14)||wb.some(z=>X<z.x1+2&&X+tw>z.x0-2&&y>floor-(phone?75:150));
@@ -259,14 +274,15 @@ const step=phone?18:20,y=[0,-1,1,-2,2,-3,3,-4,4,-5,5,-6,-7,-8].map(k=>y0+k*step)
 if(y===undefined&&!on)return;const Y=y===undefined?Math.max(m.t+34,Math.min(floor-6,y0)):y;
 put.push([X,Y,tw]);if(Math.abs(Y-y0)>4)o+=`<path d="M${X<x?X+tw+3:X-3} ${Y}L${x} ${d.y}" stroke="var(--soft)" stroke-width="1" fill="none"/>`;
 o+=`<text class="lab" x="${X}" y="${Y+4}"${on?' style="fill:var(--hot)"':''}>${n}</text>`});
-const dim=defs?.6:.75*spd;trail.attr('stroke-opacity',1-dim);dots.attr('fill-opacity',1-dim);if(defs)models.attr('fill-opacity',.2);
-if(spd>.5){const [x1,x2,x3]=E.map((e,k)=>e[6]?sx(T[k]):0).filter(Boolean),f=phone?38:Math.min(92,w/8),y1=m.t+f+4,y2=h*.56,y3=h-m.b-(phone?26:60);
-const ln=x=>`<line x1="${x}" x2="${x}" y1="${m.t}" y2="${h-m.b}" stroke="var(--hot)" stroke-width="${phone?1.5:2}"/>`;
-const nm=(t,x,y,an)=>`<text class="lab" x="${x}" y="${y}" text-anchor="${an}" style="font:700 ${f}px var(--display);fill:var(--hot)">${t}</text>`;
-const tx=(t,x,y,an)=>`<text class="lab" x="${x}" y="${y}" text-anchor="${an}" style="font:700 ${phone?20:36}px var(--display)">${t}</text>`;
-o+=ln(x1)+ln(x2)+ln(x3)+nm('AI',x1+8,y1,'start')+nm('AGI',x2-10,y1,'end')+nm('ASI',x3+10,y1,'start')
-+`<path d="M${x1+3} ${y2}H${x2-3}M${x1+11} ${y2-6}L${x1+3} ${y2}L${x1+11} ${y2+6}M${x2-11} ${y2-6}L${x2-3} ${y2}L${x2-11} ${y2+6}" fill="none" stroke="var(--ink)" stroke-width="2"/>`+tx('70 years',(x1+x2)/2,y2-12,'middle')
-+`<path d="M${x3+38} ${y2}H${x3+5}M${x3+12} ${y2-6}L${x3+4} ${y2}L${x3+12} ${y2+6}" fill="none" stroke="var(--ink)" stroke-width="2"/>`+tx('78 days',x3+12,y2-12,'start')}
+const dim=defs?.6*(1-out):.75*spd;trail.attr('stroke-opacity',1-dim);dots.attr('fill-opacity',1-dim);if(defs)models.attr('fill-opacity',.2+.3*out);
+if(spd>.5){const at=n=>sx(T[E.findIndex(e=>e[1]===n)]),x1=at('ChatGPT Launches'),x2=at('GPT-6 Astra'),x3=at('Riemann Hypothesis Proof');
+const f=phone?40:Math.min(96,w/8),s2=phone?12:18,y1=m.t+f,ya=h*.56,yb=ya+(phone?36:76),fs=phone?22:40;
+const ln=x=>`<line x1="${x}" x2="${x}" y1="${m.t}" y2="${floor}" stroke="var(--hot)" stroke-width="${phone?1.5:2}"/>`;
+const nm=(t,x,an)=>`<text class="lab" x="${x}" y="${y1}" text-anchor="${an}" style="font:700 ${f}px var(--display);fill:var(--hot)">${t}</text><text class="lab" x="${x}" y="${y1+s2+6}" text-anchor="${an}" style="font-size:${s2}px">“it’s here”</text>`;
+const tx=(t,x,y,an)=>`<text class="lab" x="${x}" y="${y}" text-anchor="${an}" style="font:700 ${fs}px var(--display)">${t}</text>`;
+const span=(a,b,y)=>`<path d="M${a+2} ${y}H${b-2}M${a+2} ${y-8}V${y+8}M${b-2} ${y-8}V${y+8}" fill="none" stroke="var(--ink)" stroke-width="2.5"/>`;
+o+=[x1,x2,x3].map(ln).join('')+nm('AI',x1+10,'start')+nm('AGI',x2-10,'end')+nm('ASI',x3+10,'start')
++span(x1,x2,ya)+tx('1,373 days',(x1+x2)/2,ya-14,'middle')+span(x2,x3,yb)+tx('78 days',x3+10,yb+fs*.35,'start')}
 evs.html('');
 labs.html(o);steps.forEach((s,j)=>s.classList.toggle('on',j===near))}
 let raf=0;const ask=()=>{if(!raf)raf=requestAnimationFrame(()=>{raf=0;draw()})};
