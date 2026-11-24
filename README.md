@@ -1,4 +1,4 @@
-# ai-so-far
+# <img src="favicon.svg" width="32" height="32" alt="" align="top"> ai-so-far
 
 [![Scrolling through the timeline, from the opening cartoon to the AI, AGI and ASI lines](demo.webp)](demo.mp4)
 
