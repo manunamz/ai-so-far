@@ -1,5 +1,7 @@
 # ai-time
 
+[![Scrolling through the timeline, from the opening cartoon to the AI, AGI and ASI lines](demo.webp)](demo.mp4)
+
 A scroll through the general history of AI, from the Mechanical Turk (1770) to today.
 
 It opens on a cartoon of an exponential ("Gradually, then suddenly"), then bends that curve into a real one: the most compute ever used to train an AI model, with the milestones of AI history (ideas, machines, culture, work, science and society) laid over it. Along the way it marks when people started saying **AI**, **AGI** and **ASI**.
