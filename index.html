@@ -41,7 +41,7 @@ p{margin:0}
 .hero{min-height:92vh}
 h1{--cap:.688;font:700 clamp(2.9rem,4.7vw,3.9rem)/.92 var(--display);margin:0 0 28px;display:flex;align-items:last baseline;gap:.22em}
 h1 .ai{font-size:calc(1em*(1 + .92/var(--cap)));line-height:.8}
-.hero .kick{color:var(--hot);font-weight:600;margin-bottom:12px}.joke,#viz,#def,#foom,#here{margin-bottom:80vh}.bam{font-size:2.8rem}.anchor{text-decoration:none;opacity:.55}.anchor:hover,.anchor:focus-visible{opacity:1}
+.hero .kick{color:var(--hot);font-weight:600;margin-bottom:12px}.joke,#viz,#def,#foom,#here{margin-bottom:80vh}.bam{font-size:2.8rem}.fork{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.fork a{flex:1 1 150px;text-align:center;white-space:nowrap;border:1px solid var(--hot);padding:10px 12px;font-weight:600;text-decoration:none}.fork a:hover{background:var(--card)}.anchor{text-decoration:none;opacity:.55}.anchor:hover,.anchor:focus-visible{opacity:1}
 .jump{display:flex;flex-wrap:wrap;gap:6px;margin-top:44px}
 .jump a{border:1px solid var(--grid);border-radius:99px;color:var(--soft);padding:3px 9px;text-decoration:none;font-size:.78rem}
 .jump a:hover{color:var(--ink);border-color:var(--soft)}
@@ -156,14 +156,15 @@ const id=i=>i===E.length-1?'new':SLUG[E[i][1]]||'e'+i,find=t=>E.findIndex(e=>e[1
 $('.col').innerHTML=`<section class="step hero"><p class="kick">Gradually, then suddenly</p><h1><span class="ai">AI</span> <span>The Story<br>So Far</span></h1><p>A timeline, 1770 to now. Keep scrolling.</p><div class="jump">${[['viz','The graph'],['def','Definitions'],['turk','Mechanical Turk'],['ai','AI gets its name'],['winter','AI winter'],['deep','Deep learning'],['chatgpt','ChatGPT'],['agi','AGI claims'],['asi','ASI claims'],['new','Latest'],['foom','The speedup'],['here','You are here'],['how','How it works']].map(([n,t])=>`<a href="#${n}">${t}</a>`).join('')}</div></section>
 <section class="step joke"><div class="card"><h2>That’s the joke, anyway</h2><p>It looks slow. It looks cute. Then it’s past you.</p><p class="note">A cartoon, not data. Redrawn after Tim Urban’s ${ex('“The AI Revolution”','https://waitbutwhy.com/2015/01/artificial-intelligence-revolution-1.html')}, Wait But Why, 2015.</p></div></section>
 <section class="step" id="viz"><div class="card"><h2 class="bam">Let’s try visualizing it... ${anchor("viz")}</h2><p>Here is the history, laid over a real curve: the most computation ever used to train an AI model. Each white dot is a milestone, sitting at the record of its day. The faint dots are 546 AI models. Hover over any dot for details.</p><p>Every gridline is a huge multiple of the one below it. <a href="#how">How this graph works</a></p><p class="note">The axis has changed. The cartoon’s was intelligence. This one is training compute on a log scale, which measures resources, not intelligence.</p></div></section>
-<section class="step" id="def"><div class="card"><p>Three words before we rewind to 1770 and walk up it. ${anchor("def")}</p><dl>${G.map(g=>`<div><dt>${g[0]}</dt><dd>${g[1]} <span class="note">${g[3]}</span> ${ex('Source',g[2])}</dd></div>`).join('')}</dl></div></section>`
+<section class="step" id="def"><div class="card"><p>Three words before we rewind to 1770 and walk up it. ${anchor("def")}</p><dl>${G.map(g=>`<div><dt>${g[0]}</dt><dd>${g[1]} <span class="note">${g[3]}</span> ${ex('Source',g[2])}</dd></div>`).join('')}</dl></div><p class="fork"><a href="#turk">Walk through it ↓</a><a href="#foom">Skip to the punchline →</a></p></section>`
 +E.map((e,i)=>`<section class="step${e[6]?" mega":""}" id="${id(i)}"><article class="card">${e[6]?`<p class="era">${e[6]}</p><p class="say">${{AI:"Nearly everyone says it’s here",AGI:"People start saying it’s here",ASI:"Now they’re saying this"}[e[6]]}</p>`:""}<time>${fmt(e[0])} · ${e[4]}</time><h2>${e[1]} ${SLUG[e[1]]||i===E.length-1?anchor(id(i)):''}</h2><p>${e[2]}</p>${e[5]?`<p class="note">${e[5]}</p>`:''}<p class="src">${ex('Source',e[3])}${e[7]?` · ${ex('Meta reaction',e[7])} · ${ex('Musk reaction',e[8])}`:''}</p></article></section>`).join('')
-+`<section class="step mega" id="foom"><div class="card"><p class="era" style="font-size:clamp(3.6rem,7vw,5rem);line-height:.9">1,373 days. Then 78. ${anchor("foom")}</p><p>From “AI is here” to “AGI is here” took 1,373 days, or 3 years and 9 months. “ASI is here” came 78 days later.</p><p class="note">All three lines use one standard: the loudest public moment we could find. We picked those moments, and ChatGPT as “AI is here” is our judgment. The AGI and ASI claims are disputed. This shows how fast the talk moved, not that either was reached.</p></div></section>
++`<section class="step mega" id="foom"><div class="card"><p class="era" style="font-size:clamp(3.6rem,7vw,5rem);line-height:.9">1,373 days. Then 78. ${anchor("foom")}</p><p>From “AI is here” to “AGI is here” took 1,373 days, or 3 years and 9 months. “ASI is here” came 78 days later.</p><p class="note">Each line marks when the claim got loudest, not when everyone agreed. <a href="#how">How we picked</a></p></div></section>
 <section class="step" id="here"><div class="card"><h2>You are here ${anchor("here")}</h2><p>${E.length} milestones, back in one view. Select any dot to return to its card.</p><p class="note">Compiled 23 Nov 2026. Shaded bands mark the two AI winters, with approximate dates. Written by Claude, which is made by Anthropic. Several 2026 entries involve Anthropic or its competitors.</p></div></section>
 <section class="step" id="how"><div class="card"><h2>How this graph works ${anchor("how")}</h2>
 <p><b>The axis</b> is training compute in FLOP, the number of calculations used to train a model. It is logarithmic, so each step up multiplies. Steady exponential growth would be a straight line here. Since 1987 the record has grown about 2.6× a year on average, with a plateau from 2007 to 2013. That is close to steady exponential growth.</p>
 <p><b>The line</b> is the largest training run so far. It moves in steps because it only changes when a bigger model appears. Early years have few models, so its shape before 1987, including the flat stretch from 1960, is rough.</p>
-<p><b>White dots</b> are ${E.length} milestones we picked. Each sits on the line at its date. Those before 1950 sit on the floor because the data starts there, so that flat stretch is not a measurement. In the widest views, one teal band covers the AI, AGI and ASI claims, from 2022 to 2026.</p>
+<p><b>White dots</b> are ${E.length} milestones we picked. Each sits on the line at its date. Those before 1950 sit on the floor because the data starts there, so that flat stretch is not a measurement.</p>
+<p><b>The AI, AGI and ASI lines</b> mark the loudest public moment for each claim: ChatGPT, GPT-6 Astra and the Riemann proof. The choices are ours. AGI and ASI are disputed, so the lines track what people said, not what was reached. In the widest views, one band covers all three.</p>
 <p><b>Faint dots</b> are 546 AI models with a date and a compute estimate, from ${ex('Epoch AI','https://epoch.ai/data/ai-models')} (${ex('CC BY','https://creativecommons.org/licenses/by/4.0/')}, downloaded 23 Nov 2026). Some estimates are speculative; hover over a dot for its rating.</p></div></section>`;
 const steps=[...document.querySelectorAll('.step')];
 // Epoch AI, CC BY: [year, log10 FLOP, name, org, date, domain, parameters, confidence]
@@ -175,7 +176,7 @@ const T=E.map(e=>yr(e[0])),P=E.map((e,i)=>({e,i,t:T[i],rec:recAt(T[i]+.001)}));
 const full={now:2027,l:1762,r:2056};
 const cam=i=>{const t=T[i],k=d3.scaleLinear([1940,1975,2010,2023,2027],[1,.75,.35,.06,.016]).clamp(true)(t)*178,l=Math.max(1762,t-Math.max(k,t<1940?45:0));
 return{now:t+.001,l,r:t+Math.max(.25,(t-l)*.16),e:E[i]}};
-const C=[full,full,full,{...full,l:2019,r:2028.6},...E.map((e,i)=>cam(i)),{...full,l:2022.4,r:2027.9,spd:1},full,full];
+const C=[full,full,full,full,...E.map((e,i)=>cam(i)),{...full,l:2022.4,r:2027.9,spd:1},full,full];
 C.forEach(c=>{const v=MODELS.filter(d=>d.t>=c.l&&d.t<=c.now).map(d=>d.v);const k=recAt(c.now);if(k)v.push(k.v);let a=v.length?Math.min(...v):1,z=v.length?Math.max(...v):9;if(z-a<6){const k=(a+z)/2;a=k-3;z=k+3}c.lo=a-1;c.hi=z+(z-a)*.14+.5});
 const resample=(v,n)=>{const L=[0];for(let i=1;i<v.length;i++)L.push(L[i-1]+Math.hypot(v[i][0]-v[i-1][0],v[i][1]-v[i-1][1]));return d3.range(n).map(k=>{const t=L.at(-1)*k/(n-1),i=Math.max(1,d3.bisectLeft(L,t)),f=(t-L[i-1])/((L[i]-L[i-1])||1);return[v[i-1][0]+f*(v[i][0]-v[i-1][0]),v[i-1][1]+f*(v[i][1]-v[i-1][1])]})};
 let toon=0;const curve=$('#toon .curve');
@@ -190,16 +191,17 @@ let sx,sy,now=2027;
 const mark=()=>innerHeight*(innerWidth<=860?.72:.52);
 // center a step on the mark so the chart settles on it
 const spot=s=>{const b=s.getBoundingClientRect();return scrollY+b.top+b.height/2-mark()+1};
-// #viz plays the cartoon-to-chart transition: scroll there from the top, until the reader takes over
+// #viz plays the cartoon-to-chart transition and #foom draws its brackets: scroll into them, until the reader takes over
 let playing=0;
-const play=s=>{const me=playing=Math.random()+1;let t0;scrollTo(0,0);
-const tick=t=>{if(playing!==me)return;t0??=t+500;const k=Math.max(0,Math.min(1,(t-t0)/5500));scrollTo(0,spot(s)*d3.easeSinInOut(k));if(k<1)requestAnimationFrame(tick);else playing=0};
+const PLAY={viz:[()=>0,5500],foom:[s=>{const a=spot(steps[steps.indexOf(s)-1]);return a+.5*(spot(s)-a)},4500]};
+const play=(s,n)=>{const me=playing=Math.random()+1,[at,ms]=PLAY[n];let t0;const from=at(s);scrollTo(0,from);
+const tick=t=>{if(playing!==me)return;t0??=t+500;const k=Math.max(0,Math.min(1,(t-t0)/ms));scrollTo(0,from+(spot(s)-from)*d3.easeSinInOut(k));if(k<1)requestAnimationFrame(tick);else playing=0};
 requestAnimationFrame(tick)};
 ['wheel','touchstart','keydown','pointerdown'].forEach(n=>addEventListener(n,()=>playing=0,{passive:true}));
-const go=n=>{const s=n&&document.getElementById(n);if(!s||!s.classList.contains('step'))return false;playing=0;if(n==='viz'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)play(s);else scrollTo(0,spot(s));return true};
+const go=n=>{const s=n&&document.getElementById(n);if(!s||!s.classList.contains('step'))return false;playing=0;if(PLAY[n]&&!calm.matches)play(s,n);else scrollTo(0,spot(s));return true};
 const goHash=()=>go(location.hash.slice(1));
 let opened=false;
-const settle=()=>{if(location.hash!=='#viz')goHash();else if(!opened){opened=true;goHash()}};
+const settle=()=>{if(!PLAY[location.hash.slice(1)])goHash();else if(!opened){opened=true;goHash()}};
 function draw(){
 const box=svg.node().getBoundingClientRect(),w=box.width,h=box.height,phone=innerWidth<=860,mk=mark();
 const mids=steps.map(s=>{const r=s.getBoundingClientRect();return r.top+r.height/2});
@@ -210,12 +212,9 @@ if(scrollY<=0){i=0;p=0}
 const near=p>.5?i+1:i,raw=p;
 // opening: finish bending the curve before the next card is read
 if(i===1)p=Math.max(0,Math.min(1,(p-.12)/.53));
-// zoom in on the claims before their lines rise
-if(i===2)p=Math.min(1,p/.48);
-// definitions: hold until the card starts leaving, fade the lines out, then rewind
-let out=0;
+// definitions: hold until the card starts leaving, then rewind
 if(i===3){const D=mids[4]-mids[3],gone=mk-mids[3],card=steps[3].firstElementChild.getBoundingClientRect(),s0=Math.min(.5*D,Math.max(0,card.top+gone-(phone?h:0)));
-const z=Math.max(0,Math.min(1,(gone-s0)/(.95*D-s0)));out=Math.min(1,z/.3);p=Math.max(0,(z-.3)/.7)}
+p=Math.max(0,Math.min(1,(gone-s0)/(.95*D-s0)))}
 p=calm.matches?Math.round(p):d3.easeCubicInOut(p);
 const a=C[i],b=C[Math.min(i+1,C.length-1)],q=k=>a[k]+(b[k]-a[k])*p;now=q('now');
 toon=i===0?1:i===1?1-p:0;
@@ -255,35 +254,36 @@ const to=resample(pts,140),M0=curve.getScreenCTM(),len=curve.getTotalLength();
 const from=d3.range(140).map(n=>{const z=curve.getPointAtLength(len*n/139).matrixTransform(M0);return[z.x-box.left,z.y-box.top]});
 mp.setAttribute('d',d3.line()(to.map((t,n)=>[from[n][0]+(t[0]-from[n][0])*p,from[n][1]+(t[1]-from[n][1])*p])));mp.style.opacity=1}else mp.style.opacity=0;
 const KEY=['ELIZA','ChatGPT Launches','Deep Blue Beats Kasparov','Can Machines Think?','Ada Lovelace’s Notes','The Mechanical Turk','R.U.R. Gives Us “Robot”','AlexNet Wins ImageNet'];
-const put=[],defs=i===3?out<1:steps[near].id==='def';let o=winters;
-// with the definitions, each line shoots up from the floor and its label pops in: AI, a pause, then AGI and ASI close together
-const mk3=i<2||i===2&&raw<=.5?0:i===3?1-out:1,RISE={AI:[.5,.68],AGI:[.75,.85],ASI:[.86,.92]};
+const put=[];let o=winters;
+// each claim's line shoots up from the floor as its card arrives, and its label pops in; the overviews get one band
+const mk3=i<=3?0:1;
 const t3=E.flatMap((e,k)=>e[6]?[T[k]]:[]);
 if(whole&&mk3&&spd<=.5&&now>=t3[2]){const b0=sx(t3[0]),b1=sx(t3[2]),z=phone?17:26;
 o+=`<g opacity="${mk3}"><rect x="${b0}" y="${m.t}" width="${b1-b0}" height="${floor-m.t}" fill="var(--hot)" fill-opacity=".28"/>`+['AI','AGI','ASI'].map((n,k)=>`<text class="lab" x="${b1+8}" y="${m.t+14+k*z*.95}" style="font:700 ${z}px var(--display);fill:var(--hot)">${n}</text>`).join('')+`<text class="lab" x="${b1+8}" y="${m.t+14+2*z*.95+18}" style="font-size:${phone?11:13}px">2022–26</text></g>`}
-E.forEach((e,k)=>{if(!e[6]||spd>.5||!mk3||whole)return;const t=T[k];if(t>now||!inx(t))return;
-const [a0,b0]=RISE[e[6]],g=i===2&&!calm.matches?Math.max(0,Math.min(1,(raw-a0)/(b0-a0))):1;if(!g)return;
-const x=sx(t),sz=(phone?17:26)*(defs?phone?1.6:2.1:1),end=e[6]==='AGI',gap=8;
+E.forEach((e,k)=>{if(!e[6]||spd>.5||!mk3||whole)return;const t=T[k],coming=i===k+3;if(!coming&&t>now||!inx(t))return;
+const g=coming&&!calm.matches?Math.max(0,Math.min(1,(raw-.45)/.5)):coming&&raw<.5?0:1;if(!g)return;
+const x=sx(t),sz=phone?17:26,end=e[6]==='AGI',gap=8;
 const top=floor-(floor-m.t)*d3.easeCubicIn(Math.min(1,g/.7)),hit=Math.max(0,(g-.7)/.3),pop=hit?Math.max(0,d3.easeBackOut.overshoot(2.5)(hit)):0;
-o+=`<g opacity="${mk3}"><line x1="${x}" x2="${x}" y1="${floor}" y2="${top}" stroke="var(--hot)" stroke-width="${defs?3:1.5}" stroke-dasharray="${defs?"7 6":"4 5"}"/>`;
+o+=`<g opacity="${mk3}"><line x1="${x}" x2="${x}" y1="${floor}" y2="${top}" stroke="var(--hot)" stroke-width="1.5" stroke-dasharray="4 5"/>`;
 if(g<1)o+=hit?`<circle cx="${x}" cy="${m.t}" r="${8+46*hit}" fill="none" stroke="var(--hot)" stroke-width="${4*(1-hit)}" opacity="${1-hit}"/>`:`<circle cx="${x}" cy="${top}" r="9" fill="var(--hot)" opacity=".3"/><circle cx="${x}" cy="${top}" r="4.5" fill="var(--hot)"/>`;
-o+=`<g transform="translate(${end?x-gap:x+gap} ${m.t+(defs?sz*.75:14)}) scale(${pop})"><text class="lab" text-anchor="${end?'end':'start'}" style="font:700 ${sz}px var(--display);fill:var(--hot)">${e[6]}</text>${defs?`<text class="lab" y="${phone?14:19}" text-anchor="${end?'end':'start'}" style="font-size:${phone?11:14}px">“it’s here”</text>`:''}</g></g>`});
-[...seen].reverse().sort((a,b)=>(b.e===cur)-(a.e===cur)).forEach(d=>{const on=d.e===cur;if(spd>.5||defs||!inx(d.t)||(!whole&&cur&&cur!==d.e&&d.i<E.indexOf(cur)-7)||(whole&&!KEY.includes(d.e[1]))||(phone&&!on&&!whole))return;
+o+=`<g transform="translate(${end?x-gap:x+gap} ${m.t+14}) scale(${pop})"><text class="lab" text-anchor="${end?'end':'start'}" style="font:700 ${sz}px var(--display);fill:var(--hot)">${e[6]}</text></g></g>`});
+[...seen].reverse().sort((a,b)=>(b.e===cur)-(a.e===cur)).forEach(d=>{const on=d.e===cur;if(spd>.5||!inx(d.t)||(!whole&&cur&&cur!==d.e&&d.i<E.indexOf(cur)-7)||(whole&&!KEY.includes(d.e[1]))||(phone&&!on&&!whole))return;
 const n=d.e[1],tw=n.length*7.2,x=sx(d.t),X=x-14-tw>m.l?x-14-tw:x+14,y0=d.y-(on?4:0);
 const hit=y=>y<m.t+34||y>floor-4||X+tw>w-m.r+14||put.some(b=>X<b[0]+b[2]+8&&b[0]<X+tw+8&&Math.abs(b[1]-y)<18)||(!whole&&Math.abs(y-d.y)<14&&y!==y0)||seen.some(z=>z!==d&&sx(z.t)>X-7&&sx(z.t)<X+tw+7&&Math.abs(z.y-y)<14)||wb.some(z=>X<z.x1+2&&X+tw>z.x0-2&&y>floor-(phone?75:150));
 const step=phone?18:20,y=[0,-1,1,-2,2,-3,3,-4,4,-5,5,-6,-7,-8].map(k=>y0+k*step).find(y=>!hit(y));
 if(y===undefined&&!on)return;const Y=y===undefined?Math.max(m.t+34,Math.min(floor-6,y0)):y;
 put.push([X,Y,tw]);if(Math.abs(Y-y0)>4)o+=`<path d="M${X<x?X+tw+3:X-3} ${Y}L${x} ${d.y}" stroke="var(--soft)" stroke-width="1" fill="none"/>`;
 o+=`<text class="lab" x="${X}" y="${Y+4}"${on?' style="fill:var(--hot)"':''}>${n}</text>`});
-const dim=defs?.6*(1-out):.75*spd;trail.attr('stroke-opacity',1-dim);dots.attr('fill-opacity',1-dim);if(defs)models.attr('fill-opacity',.2+.3*out);
+const dim=.75*spd;trail.attr('stroke-opacity',1-dim);dots.attr('fill-opacity',1-dim);
 if(spd>.5){const at=n=>sx(T[E.findIndex(e=>e[1]===n)]),x1=at('ChatGPT Launches'),x2=at('GPT-6 Astra'),x3=at('Riemann Hypothesis Proof');
 const f=phone?40:Math.min(96,w/8),s2=phone?12:18,y1=m.t+f,ya=h*.56,yb=ya+(phone?36:76),fs=phone?22:40;
 const ln=x=>`<line x1="${x}" x2="${x}" y1="${m.t}" y2="${floor}" stroke="var(--hot)" stroke-width="${phone?1.5:2}"/>`;
 const nm=(t,x,an)=>`<text class="lab" x="${x}" y="${y1}" text-anchor="${an}" style="font:700 ${f}px var(--display);fill:var(--hot)">${t}</text><text class="lab" x="${x}" y="${y1+s2+6}" text-anchor="${an}" style="font-size:${s2}px">“it’s here”</text>`;
 const tx=(t,x,y,an)=>`<text class="lab" x="${x}" y="${y}" text-anchor="${an}" style="font:700 ${fs}px var(--display)">${t}</text>`;
+const still=i!==steps.length-4||calm.matches,to=(a,b)=>still?1:Math.max(0,Math.min(1,(raw-a)/(b-a))),g1=d3.easeCubicInOut(to(.6,.86)),g2=to(.91,.95);
 const span=(a,b,y)=>`<path d="M${a+2} ${y}H${b-2}M${a+2} ${y-8}V${y+8}M${b-2} ${y-8}V${y+8}" fill="none" stroke="var(--ink)" stroke-width="2.5"/>`;
 o+=[x1,x2,x3].map(ln).join('')+nm('AI',x1+10,'start')+nm('AGI',x2-10,'end')+nm('ASI',x3+10,'start')
-+span(x1,x2,ya)+tx('1,373 days',(x1+x2)/2,ya-14,'middle')+span(x2,x3,yb)+tx('78 days',x3+10,yb+fs*.35,'start')}
++(g1>.02?span(x1,x1+(x2-x1)*g1,ya):'')+(g1===1?tx('1,373 days',(x1+x2)/2,ya-14,'middle'):'')+(g2>0?span(x2,x2+(x3-x2)*g2,yb):'')+(g2===1?tx('78 days',x3+10,yb+fs*.35,'start'):'')}
 evs.html('');
 labs.html(o);steps.forEach((s,j)=>s.classList.toggle('on',j===near))}
 let raf=0;const ask=()=>{if(!raf)raf=requestAnimationFrame(()=>{raf=0;draw()})};
