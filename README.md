@@ -1,4 +1,4 @@
-# ai-time
+# ai-so-far
 
 [![Scrolling through the timeline, from the opening cartoon to the AI, AGI and ASI lines](demo.webp)](demo.mp4)
 
