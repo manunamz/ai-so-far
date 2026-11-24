@@ -2,7 +2,7 @@
 
 A scroll through the general history of AI, from the Mechanical Turk (1770) to today.
 
-It opens on the "we can't feel exponentials" joke, then bends that cartoon curve into a running count of real milestones: ideas, machines, culture, work, science and society. Along the way it marks when people started saying **AI**, **AGI** and **ASI**.
+It opens on a cartoon of an exponential ("Gradually, then suddenly"), then bends that curve into a real one: the most compute ever used to train an AI model, with the milestones of AI history (ideas, machines, culture, work, science and society) laid over it. Along the way it marks when people started saying **AI**, **AGI** and **ASI**.
 
 ## Run
 
@@ -13,6 +13,8 @@ open index.html
 ```
 
 It needs a network connection to load [D3](https://d3js.org) 7.8.5 from cdnjs and fonts from Google Fonts. The page doesn't work without D3; fonts fall back.
+
+Deep links: `#viz` (plays the opening transition), `#def`, `#foom` (plays the brackets), `#here` and `#how` (the footnote on how the graph works). Milestones: `#turk`, `#ai`, `#winter`, `#deep`, `#chatgpt`, `#agi`, `#asi` and `#new` (always the newest). Named ones are set by title in `SLUG`; the rest are `#e1`, `#e2` and so on by position, so those shift when you add events.
 
 ## Edit
 
@@ -37,13 +39,15 @@ A milestone is an array, in date order:
 - `marker` is `"AI"`, `"AGI"`, `"ASI"` or `null`. It makes the oversized card and the line on the chart.
 - The two extra links are only shown on the Riemann card, where they are labelled as the Meta and Musk reactions.
 
-Some things are written by hand and won't update themselves: the "70 years. Then 78 days." frame, the counts in the chart's `aria-label` and intro card, the start year, the compile date, and the era buttons, which find milestones by title.
+Some things are written by hand and won't update themselves: the "1,373 days. Then 78." frame, the counts in the chart's `aria-label` and intro card, the start year, the compile date, the titles in `SLUG`, and the list of tags at the top of the page.
 
 ## Reading the chart
 
-- The line counts the milestones on this page. They were hand-picked, and recent ones are easier to remember, so part of the climb is selection.
-- The faint dots are AI models, placed by estimated training compute on their own log scale, which rescales with each view. Their height isn't comparable with the line.
-- The AI, AGI and ASI lines mark when people used each word as a claim. They don't show that AGI or ASI was reached.
+- The y-axis is training compute in FLOP, on a log scale. It measures resources, not intelligence.
+- The line is the largest training run so far. The faint dots are individual models.
+- Milestones sit on the line at their date, so their height is the compute record of the day. Those before 1950 sit on the floor, because the dataset starts there.
+- The milestones are hand-picked.
+- The AI, AGI and ASI lines mark when people used each word as a claim. They don't show that AGI or ASI was reached. In the widest views one to-scale band covers all three. AI sits on ChatGPT, the loudest "AI is here" moment, not on the 1956 naming.
 - The opening cartoon isn't data.
 
 ## Sources and credits
