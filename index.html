@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>The Story of AI So Far</title>
+<title>AI: The Story So Far</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@600;700&family=Patrick+Hand&family=Libre+Franklin:wght@400;600&display=swap">
 <style>
@@ -39,7 +39,8 @@ p{margin:0}
 .col{position:relative;width:390px;max-width:100%}
 .step{min-height:58vh;display:flex;flex-direction:column;justify-content:center;padding-block:24px}
 .hero{min-height:92vh}
-h1{font:700 clamp(6.5rem,13vw,10.5rem)/.82 var(--display);margin:0 0 28px;text-wrap:balance}
+h1{--cap:.688;font:700 clamp(2.9rem,4.7vw,3.9rem)/.92 var(--display);margin:0 0 28px;display:flex;align-items:last baseline;gap:.22em}
+h1 .ai{font-size:calc(1em*(1 + .92/var(--cap)));line-height:.8}
 .hero .kick{color:var(--hot);font-weight:600;margin-bottom:12px}.joke,#viz,#def,#foom,#here{margin-bottom:80vh}.bam{font-size:2.8rem}.anchor{text-decoration:none;opacity:.55}.anchor:hover,.anchor:focus-visible{opacity:1}
 .jump{display:flex;flex-wrap:wrap;gap:6px;margin-top:44px}
 .jump a{border:1px solid var(--grid);border-radius:99px;color:var(--soft);padding:3px 9px;text-decoration:none;font-size:.78rem}
@@ -152,7 +153,7 @@ const anchor=n=>`<a class="anchor" href="#${n}" aria-label="Link to this section
 // named anchors; other milestones are #e0, #e1, ... and the newest is always #new
 const SLUG={'The Mechanical Turk':'turk','The Dartmouth Workshop':'ai','The First AI Winter':'winter','AlexNet Wins ImageNet':'deep','ChatGPT Launches':'chatgpt','GPT-6 Astra':'agi','Riemann Hypothesis Proof':'asi'};
 const id=i=>i===E.length-1?'new':SLUG[E[i][1]]||'e'+i,find=t=>E.findIndex(e=>e[1]===t);
-$('.col').innerHTML=`<section class="step hero"><p class="kick">Gradually, then suddenly</p><h1>AI...<br>So Far</h1><p>A timeline, 1770 to now. Keep scrolling.</p><div class="jump">${[['viz','The graph'],['def','Definitions'],['turk','Mechanical Turk'],['ai','AI gets its name'],['winter','AI winter'],['deep','Deep learning'],['chatgpt','ChatGPT'],['agi','AGI claims'],['asi','ASI claims'],['new','Latest'],['foom','The speedup'],['here','You are here'],['how','How it works']].map(([n,t])=>`<a href="#${n}">${t}</a>`).join('')}</div></section>
+$('.col').innerHTML=`<section class="step hero"><p class="kick">Gradually, then suddenly</p><h1><span class="ai">AI</span> <span>The Story<br>So Far</span></h1><p>A timeline, 1770 to now. Keep scrolling.</p><div class="jump">${[['viz','The graph'],['def','Definitions'],['turk','Mechanical Turk'],['ai','AI gets its name'],['winter','AI winter'],['deep','Deep learning'],['chatgpt','ChatGPT'],['agi','AGI claims'],['asi','ASI claims'],['new','Latest'],['foom','The speedup'],['here','You are here'],['how','How it works']].map(([n,t])=>`<a href="#${n}">${t}</a>`).join('')}</div></section>
 <section class="step joke"><div class="card"><h2>That’s the joke, anyway</h2><p>It looks slow. It looks cute. Then it’s past you.</p><p class="note">A cartoon, not data. Redrawn after Tim Urban’s ${ex('“The AI Revolution”','https://waitbutwhy.com/2015/01/artificial-intelligence-revolution-1.html')}, Wait But Why, 2015.</p></div></section>
 <section class="step" id="viz"><div class="card"><h2 class="bam">Let’s try visualizing it... ${anchor("viz")}</h2><p>Here is the history, laid over a real curve: the most computation ever used to train an AI model. Each white dot is a milestone, sitting at the record of its day. The faint dots are 546 AI models. Hover over any dot for details.</p><p>Every gridline is a huge multiple of the one below it. <a href="#how">How this graph works</a></p><p class="note">The axis has changed. The cartoon’s was intelligence. This one is training compute on a log scale, which measures resources, not intelligence.</p></div></section>
 <section class="step" id="def"><div class="card"><p>Three words before we rewind to 1770 and walk up it. ${anchor("def")}</p><dl>${G.map(g=>`<div><dt>${g[0]}</dt><dd>${g[1]} <span class="note">${g[3]}</span> ${ex('Source',g[2])}</dd></div>`).join('')}</dl></div></section>`
